@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
@@ -11,6 +11,9 @@ import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
+import { navigation } from '../../public/data/Navdata'
+
+
 
 function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current
@@ -191,32 +194,20 @@ function NavigationGroup({ group, className }) {
   )
 }
 
-export const navigation = [
-  {
-    title: 'Guides',
-    links: [
-      { title: 'Introduction', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'SDKs', href: '/sdks' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
-      { title: 'Webhooks', href: '/webhooks' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { title: 'Contacts', href: '/contacts' },
-      { title: 'Conversations', href: '/conversations' },
-      { title: 'Messages', href: '/messages' },
-      { title: 'Groups', href: '/groups' },
-      { title: 'Attachments', href: '/attachments' },
-    ],
-  },
-]
 
 export function Navigation(props) {
+
+  const [error, setError] = useState(null)
+
+
+   if (error) {
+     return <p className="text-red-500">Error: {error}</p>
+   }
+
+   if (!navigation) {
+     return <p className="text-zinc-600 dark:text-zinc-400">Loading...</p>
+   }
+
   return (
     <nav {...props}>
       <ul role="list">

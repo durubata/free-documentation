@@ -16,7 +16,7 @@ import { createAutocomplete } from '@algolia/autocomplete-core'
 import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { navigation } from '@/components/Navigation'
+import { navigation } from '../../public/data/Navdata'
 
 function useAutocomplete({ close }) {
   let id = useId()

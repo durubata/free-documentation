@@ -13,10 +13,10 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  let pages = await glob('**/*.mdx', { cwd: 'src/app' })
+  let pages = await glob('**/*.{jsx,mdx}', { cwd: 'src/app' })
   let allSectionsEntries = await Promise.all(
     pages.map(async (filename) => [
-      '/' + filename.replace(/(^|\/)page\.mdx$/, ''),
+      '/' + filename.replace(/(^|\/)page\.(jsx|mdx)$/, ''),
       (await import(`./${filename}`)).sections,
     ]),
   )

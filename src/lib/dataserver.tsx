@@ -2,12 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { getAppEngineClient } from '../../framework/appengine-client'
 import { appEndpoints } from '@jaclight/dbsdk'
 import { CodeGroup, CodePanel } from '@/components/Code'
 import { processRequestAuth } from '../../framework/http'
-import { h2 } from '@/components/mdx'
-import { title } from 'process'
 
 export default function DataServer({
   pageName,
@@ -70,13 +67,6 @@ export default function DataServer({
   if (error) {
     return <div className="text-red-500">{error}</div>
   }
-  // const uniqueKeys = Object.keys(codeGroup).map((key) => {
-  //   const sameKey = key.split()
-  //   return {
-  //     title: key,
-  //     code: codeGroup[key],
-  //   }
-  // })
   return (
     <div
       className={clsx(
@@ -100,7 +90,6 @@ export default function DataServer({
                 <CodePanel
                   key={key}
                   tag={language}
-                  // language={language}
                   label={formattedTitle}
                   code={codeGroup[key]}
                 >
@@ -108,23 +97,6 @@ export default function DataServer({
                 </CodePanel>
               )
             }
-            // return
-            // else {
-            //   const language = key.replace('title', '')
-            //   const titleKey = `${language}title`
-            //   const formattedTitle =
-            //     codeGroup[titleKey]?.replace(/<[^>]+>/g, '') || language
-            //   return (
-            //     <CodePanel
-            //       key={key}
-            //       tag={language}
-            //       label={formattedTitle}
-            //       code={codeGroup[key]}
-            //     >
-            //       <>{codeGroup[key]}</>
-            //     </CodePanel>
-            //   )
-            // }
           })}
         </CodeGroup>
       )}

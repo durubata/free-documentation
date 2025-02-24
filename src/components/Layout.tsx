@@ -21,7 +21,6 @@ export function Layout({
   navigationData: NavGroup[]
 }) {
   let pathname = usePathname()
-  // console.log('Navigation Data in Layout:', navigationData)
   return (
     <SectionProvider sections={allSections[pathname] ?? []}>
       <div className="h-full lg:ml-72 xl:ml-80">

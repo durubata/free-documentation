@@ -35,7 +35,6 @@ let allSections: Record<string, Section[]> =
 let navigationData: NavGroup[] = []
 try {
   navigationData = await fetchNavigationData()
-  // console.log('Fetched Navigation Data:', navigationData,'jdjdj') 
 } catch (error) {
   console.error('Failed to fetch navigation:', error)
 }
